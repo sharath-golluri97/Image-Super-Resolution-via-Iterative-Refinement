@@ -143,6 +143,7 @@ class GaussianDiffusion(nn.Module):
             self.sqrt_recipm1_alphas_cumprod[t] * noise
 
     def q_posterior(self, x_start, x_t, t):
+        # TODO: DIFF here
         posterior_mean = self.posterior_mean_coef1[t] * \
             x_start + self.posterior_mean_coef2[t] * x_t
         posterior_log_variance_clipped = self.posterior_log_variance_clipped[t]

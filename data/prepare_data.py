@@ -1,6 +1,5 @@
 import argparse
 from io import BytesIO
-import multiprocessing
 from multiprocessing import Lock, Process, RawValue
 from functools import partial
 from multiprocessing.sharedctypes import RawValue
@@ -40,6 +39,7 @@ def resize_multiple(img, sizes=(16, 128), resample=Image.BICUBIC, lmdb_save=Fals
     return [lr_img, hr_img, sr_img]
 
 def resize_worker(img_file, sizes, resample, lmdb_save=False):
+    print(img_file)
     img = Image.open(img_file)
     img = img.convert('RGB')
     out = resize_multiple(
@@ -102,7 +102,8 @@ def prepare(img_path, out_path, n_worker, sizes=(16, 128), resample=Image.BICUBI
                         resample=resample, lmdb_save=lmdb_save)
     files = [p for p in Path(
         '{}'.format(img_path)).glob(f'**/*')]
-
+    files = [x for x in files if not x.is_dir()]
+    print(files)
     if not lmdb_save:
         os.makedirs(out_path, exist_ok=True)
         os.makedirs('{}/lr_{}'.format(out_path, sizes[0]), exist_ok=True)

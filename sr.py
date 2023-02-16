@@ -77,6 +77,7 @@ if __name__ == "__main__":
 
     diffusion.set_new_noise_schedule(
         opt['model']['beta_schedule'][opt['phase']], schedule_phase=opt['phase'])
+    # TODO: Train
     if opt['phase'] == 'train':
         while current_step < n_iter:
             current_epoch += 1

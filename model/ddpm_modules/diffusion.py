@@ -162,10 +162,12 @@ class GaussianDiffusion(nn.Module):
         )
 
     def q_posterior(self, x_start, x_t, t):
+        # TODO: DIFF here
         posterior_mean = (
             extract(self.posterior_mean_coef1, t, x_t.shape) * x_start +
             extract(self.posterior_mean_coef2, t, x_t.shape) * x_t
         )
+        # TODO: DIFF here
         posterior_variance = extract(self.posterior_variance, t, x_t.shape)
         posterior_log_variance_clipped = extract(
             self.posterior_log_variance_clipped, t, x_t.shape)
