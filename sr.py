@@ -167,6 +167,10 @@ if __name__ == "__main__":
 
                     if wandb_logger and opt['log_wandb_ckpt']:
                         wandb_logger.log_checkpoint(current_epoch, current_step)
+                import gc
+                gc.collect()
+                print(torch.cuda.memory_summary())
+                torch.cuda.empty_cache()
 
             if wandb_logger:
                 wandb_logger.log_metrics({'epoch': current_epoch-1})
