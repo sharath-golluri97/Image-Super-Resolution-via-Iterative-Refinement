@@ -11,15 +11,15 @@
 #SBATCH --ntasks-per-node=8
 ################################### Select your GPU ###################################
 ## Use snodes command to check their status first
-#SBATCH --gres=gpu:tesla_v100-pcie-32gb:1
-##SBATCH --gres=gpu:tesla_v100-pcie-16gb:1
-###SBATCH --gres=gpu:a100-pcie-40gb:1
+#SBATCH --gres=gpu:a100-pcie-80gb:1
+##SBATCH --gres=gpu:tesla_v100-pcie-32gb:1
+###SBATCH --gres=gpu:tesla_v100-pcie-16gb:1
 ################################### Set your memory ###################################
-#SBATCH --mem=32768
+#SBATCH --mem=81920
 # Memory per node specification is in MB. It is optional.
 # The default limit is 3000MB per core.
 ################################### Set your job name ###################################
-#SBATCH --job-name="sr3_rgb_train_hospital_P000_dataset"
+#SBATCH --job-name="sr3_rgb_train_hospital_P000_dataset_a100"
 ## Set output name (not work very well right now)
 ### SBATCH --output= "result_$(date +"%Y_%m_%d_%k_%M_%S").out"
 ############################ Set the email to receive email #############################
