@@ -4,6 +4,7 @@ import torch
 import torch.nn as nn
 from torch.nn import init
 from torch.nn import modules
+import gc
 logger = logging.getLogger('base')
 ####################
 # initialize
@@ -103,7 +104,7 @@ def define_G(opt):
         model,
         image_size=model_opt['diffusion']['image_size'],
         channels=model_opt['diffusion']['channels'],
-        loss_type='l1',    # L1 or L2
+        loss_type='l1',    # L1 or L2 #TODO: update this to L2
         conditional=model_opt['diffusion']['conditional'],
         schedule_opt=model_opt['beta_schedule']['train']
     )
@@ -112,5 +113,12 @@ def define_G(opt):
         init_weights(netG, init_type='orthogonal')
     if opt['gpu_ids'] and opt['distributed']:
         assert torch.cuda.is_available()
+        gc.collect()
+        torch.cuda.empty_cache()
+        torch.cuda.memory_summary()
         netG = nn.DataParallel(netG)
+        # TODO: CUDA cache empty
+        gc.collect()
+        torch.cuda.empty_cache()
+        torch.cuda.memory_summary()
     return netG

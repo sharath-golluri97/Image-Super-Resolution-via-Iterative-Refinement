@@ -1,12 +1,19 @@
 '''create dataset and dataloader'''
 import logging
+import torch.cuda
 from re import split
 import torch.utils.data
-
+import gc
+gc.collect()
+torch.cuda.empty_cache()
+print(torch.cuda.memory_summary())
 
 def create_dataloader(dataset, dataset_opt, phase):
     '''create dataloader '''
     if phase == 'train':
+        gc.collect()
+        print(torch.cuda.memory_summary())
+        torch.cuda.empty_cache()
         return torch.utils.data.DataLoader(
             dataset,
             batch_size=dataset_opt['batch_size'],
@@ -14,6 +21,9 @@ def create_dataloader(dataset, dataset_opt, phase):
             num_workers=dataset_opt['num_workers'],
             pin_memory=True)
     elif phase == 'val':
+        gc.collect()
+        print(torch.cuda.memory_summary())
+        torch.cuda.empty_cache()
         return torch.utils.data.DataLoader(
             dataset, batch_size=1, shuffle=False, num_workers=1, pin_memory=True)
     else:
