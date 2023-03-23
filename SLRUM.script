@@ -47,9 +47,9 @@ which pytest
 nvidia-smi
 cat SLRUM.script
 
-python data/prepare.py --path /user/sgolluri/projects/tartanair/TartanAir/hospital/Easy/P000/image_left/ --out /dataset/tartanHospital --size 480,1920
-python data/prepare.py --path /user/sgolluri/projects/tartanair/TartanAir/hospital/Easy/P001/image_left/ --out /dataset/tartanHospital --size 480,1920
+# python data/prepare.py --path /user/sgolluri/projects/tartanair/TartanAir/hospital/Easy/P000/image_left/ --out /dataset/tartanHospital --size 480,1920
+python data/prepare_data.py --path /user/sgolluri/projects/tartanair/TartanAir/hospital/Easy/P001/image_left/ --out dataset/tartanHospital --size 480,1920
 
-python sr.py.py -p train -c config/sr3_tartan_480_1920.json -enable_wandb -log_wandb_ckpt
+python sr.py -p train -c config/sr3_tartan_480_1920.json -enable_wandb -log_wandb_ckpt
 
 ################################### End of SLRUM Script ###################################
