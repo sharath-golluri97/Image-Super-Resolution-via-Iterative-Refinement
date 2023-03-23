@@ -1,4 +1,8 @@
 import os
+from datetime import datetime
+
+def get_log_timestamp():
+    return datetime.now().strftime('%y_%m_%d_%H:%M:%S')
 
 class WandbLogger:
     """
@@ -14,11 +18,13 @@ class WandbLogger:
             )
         
         self._wandb = wandb
+        self.name = opt['wandb']['name_prefix'] + str(get_log_timestamp())
 
         # Initialize a W&B run
         if self._wandb.run is None:
             self._wandb.init(
                 project=opt['wandb']['project'],
+                name=self.name,
                 config=opt,
                 dir='./experiments'
             )

@@ -1,5 +1,4 @@
 import os
-import os.path as osp
 import logging
 from collections import OrderedDict
 import json
@@ -15,7 +14,7 @@ def mkdirs(paths):
 
 
 def get_timestamp():
-    return datetime.now().strftime('%y%m%d_%H%M%S')
+    return datetime.now().strftime('%y-%m-%d_%H:%M:%S')
 
 
 def parse(args):
