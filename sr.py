@@ -31,6 +31,8 @@ if __name__ == "__main__":
     # logging
     torch.backends.cudnn.enabled = True
     torch.backends.cudnn.benchmark = True
+    torch.backends.cudnn.enabled = True
+    torch.cuda.amp.autocast(enabled=True)
 
     Logger.setup_logger(None, opt['path']['log'],
                         'train', level=logging.INFO, screen=True)
@@ -51,6 +53,9 @@ if __name__ == "__main__":
         wandb_logger = None
 
     # dataset
+    torch.cuda.set_per_process_memory_fraction(0.8)
+    # torch.cuda.set_reserved_memory(16 * 1024 * 1024 * 1024) # Reserve 8GB of GPU memory for PyTorch
+    # torch.backends.cudnn.max_split_size_mb(512)
     for phase, dataset_opt in opt['datasets'].items():
         if phase == 'train' and args.phase != 'val':
             train_set = Data.create_dataset(dataset_opt, phase)
