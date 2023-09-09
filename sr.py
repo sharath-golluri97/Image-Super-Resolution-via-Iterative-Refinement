@@ -12,7 +12,7 @@ import numpy as np
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('-c', '--config', type=str, default='config/sr_sr3_16_128.json',
+    parser.add_argument('-c', '--config', type=str, default='config/sr3_kitti_64_256_infer.json',
                         help='JSON file for configuration')
     parser.add_argument('-p', '--phase', type=str, choices=['train', 'val'],
                         help='Run either train(training) or val(generation)', default='train')
@@ -169,7 +169,7 @@ if __name__ == "__main__":
                         wandb_logger.log_checkpoint(current_epoch, current_step)
                 import gc
                 gc.collect()
-                print(torch.cuda.memory_summary())
+                # print(torch.cuda.memory_summary())
                 torch.cuda.empty_cache()
 
             if wandb_logger:

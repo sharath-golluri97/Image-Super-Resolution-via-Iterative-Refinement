@@ -18,12 +18,15 @@ class WandbLogger:
             )
         
         self._wandb = wandb
+        # print(opt)
+        # exit()
         self.name = opt['wandb']['name_prefix'] + str(get_log_timestamp())
 
         # Initialize a W&B run
         if self._wandb.run is None:
             self._wandb.init(
                 project=opt['wandb']['project'],
+                entity=opt['wandb']['team'],
                 name=self.name,
                 config=opt,
                 dir='./experiments'

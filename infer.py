@@ -11,7 +11,7 @@ import os
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('-c', '--config', type=str, default='config/sr_sr3_64_512.json',
+    parser.add_argument('-c', '--config', type=str, default='config/sr3_kitti_64_256_infer.json',
                         help='JSON file for configuration')
     parser.add_argument('-p', '--phase', type=str, choices=['val'], help='val(generation)', default='val')
     parser.add_argument('-gpu', '--gpu_ids', type=str, default=None)
@@ -64,6 +64,8 @@ if __name__ == "__main__":
 
     result_path = '{}'.format(opt['path']['results'])
     os.makedirs(result_path, exist_ok=True)
+    print(result_path)
+    # exit()
     for _,  val_data in enumerate(val_loader):
         idx += 1
         diffusion.feed_data(val_data)

@@ -154,6 +154,9 @@ class DDPM(BaseModel):
             network = self.netG
             if isinstance(self.netG, nn.DataParallel):
                 network = network.module
+            # gen_path = "I830000_E32_opt.pth"
+            print("gen: {}\n", gen_path)
+            # exit()
             network.load_state_dict(torch.load(
                 gen_path), strict=(not self.opt['model']['finetune_norm']))
             # network.load_state_dict(torch.load(
@@ -163,4 +166,6 @@ class DDPM(BaseModel):
                 opt = torch.load(opt_path)
                 self.optG.load_state_dict(opt['optimizer'])
                 self.begin_step = opt['iter']
+                print(opt)
+                # exit()
                 self.begin_epoch = opt['epoch']

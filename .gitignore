@@ -1,3 +1,11 @@
+kitti_64_512/*
+kitti_64_256/*
+centered_images/*
+dataset/*
+experiments/*
+kitti_*
+dataset
+copy_model/*
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

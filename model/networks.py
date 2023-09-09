@@ -115,10 +115,10 @@ def define_G(opt):
         assert torch.cuda.is_available()
         gc.collect()
         torch.cuda.empty_cache()
-        torch.cuda.memory_summary()
+        # torch.cuda.memory_summary()
         netG = nn.DataParallel(netG)
         # TODO: CUDA cache empty
         gc.collect()
         torch.cuda.empty_cache()
-        torch.cuda.memory_summary()
+        # torch.cuda.memory_summary()
     return netG
