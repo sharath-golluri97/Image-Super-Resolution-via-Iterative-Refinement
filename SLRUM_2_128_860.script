@@ -38,6 +38,8 @@ echo "working directory = "$SLURM_SUBMIT_DIR
 # module use /projects/academic/cwx/modulefiles
 # module load python/my-python-3
 source ~/.bashrc
+export PYTORCH_CUDA_ALLOC_CONF="max_split_size_mb=13312"
+echo "PYTORCH_CUDA_ALLOC_CONF"=$PYTORCH_CUDA_ALLOC_CONF
 conda activate sharath-env
 ## List the module your are using
 module list
@@ -47,9 +49,8 @@ which pytest
 nvidia-smi
 cat SLRUM.script
 
-# python data/prepare.py --path /user/sgolluri/projects/tartanair/TartanAir/hospital/Easy/P000/image_left/ --out /dataset/tartanHospital --size 480,1920
-python data/prepare_data.py --path /user/sgolluri/projects/tartanair/TartanAir/hospital/Easy/P001/image_left/ --out dataset/tartanHospital --size 480,1920
+python data/prepare_data.py --path /user/sgolluri/projects/tartanair/TartanAir/hospital/Easy/P001/image_left/ --out dataset/tartanHospital --size 128,860
 
-python sr.py -p train -c config/sr3_tartan_480_1920.json -enable_wandb -log_wandb_ckpt
+python sr.py -p train -c config/sr3_tartan_128_860.json -enable_wandb -log_wandb_ckpt -gpu 0
 
 ################################### End of SLRUM Script ###################################

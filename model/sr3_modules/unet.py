@@ -88,6 +88,8 @@ class Block(nn.Module):
         )
 
     def forward(self, x):
+        print("Forward block input: {}", x.size())
+        print("Forward block: {}", self.block(x))
         return self.block(x)
 
 

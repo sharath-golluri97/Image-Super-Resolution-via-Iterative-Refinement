@@ -16,11 +16,11 @@
         "train": {
             "name": "P000",
             "mode": "HR",
-            "dataroot": "dataset/tartanHospital_480_1920",
+            "dataroot": "dataset/tartanHospital_480_860",
             "datatype": "img", //lmdb or img, path of img files
             "l_resolution": 480,
-            "r_resolution": 1920,
-            "batch_size": 8,
+            "r_resolution": 860,
+            "batch_size": 2,
             "num_workers": 8,
             "use_shuffle": true,
             "data_len": -1
@@ -28,10 +28,10 @@
         "val": {
             "name": "P000",
             "mode": "LRHR",
-            "dataroot": "dataset/tartanHospital_480_1920",
+            "dataroot": "dataset/tartanHospital_480_860",
             "datatype": "img", //lmdb or img, path of img files
             "l_resolution": 480,
-            "r_resolution": 1920,
+            "r_resolution": 860,
             "data_len": 3
         }
     },
@@ -71,7 +71,7 @@
             }
         },
         "diffusion": {
-            "image_size": 1920,
+            "image_size": 860,
             "channels": 3, //sample channel
             "conditional": true
         }
@@ -93,6 +93,6 @@
     },
     "wandb": {
         "project": "sr3_p000",
-        "name_prefix": "sr3_rgb_"
+        "name_prefix": "sr3_rgb_480_860_2"
     }
 }
